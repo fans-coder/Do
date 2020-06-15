@@ -3,4 +3,5 @@ public class hello {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+    private  double a;
 }
