@@ -54,6 +54,7 @@
     </tr>
 </table>
 <%}%>
-<p>查看我的<a href="car.jsp">购物车</a></p>
+<p>查看我的<a href="Mycart.jsp">购物车</a></p>
+<p>返回<a href="index.jsp">主页</a></p>
 </body>
 </html>

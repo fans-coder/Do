@@ -8,7 +8,7 @@
 <%@ page import="java.util.*,java.io.*" contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Document</title>
+    <title>Go Shopping</title>
 </head>
 <body>
 <h1>购物车演示</h1>
@@ -19,7 +19,7 @@
     }else {%>
 <p>欢迎<%=name%>>
 <p><a href="mall.jsp">查看商城</a>
-<p><a href="car.jsp">我的购物车</a>
+<p><a href="Mycart.jsp">我的购物车</a>
 <p><a href="logout.jsp">退出</a>
 <%}%>
 </body>
