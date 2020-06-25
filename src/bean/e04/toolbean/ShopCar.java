@@ -36,8 +36,8 @@ public class ShopCar {
     }
 public void removeItems(String name){
         for(int i=0;i<buylist.size();i++){
-            bean.e04.valuebean.GoodsSingle ans=(GoodsSingle)buylist.get(i);
-            if(ans.getName().equals(Mytools.toChinese(name))){
+            bean.e04.valuebean.GoodsSingle ans=(bean.e04.valuebean.GoodsSingle)buylist.get(i);
+            if(ans.getName().equals(name)){
                 if(ans.getNum()>1){
                     ans.setNum(ans.getNum()-1);
                     break;
