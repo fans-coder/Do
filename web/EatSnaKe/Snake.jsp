@@ -90,29 +90,41 @@
         }
         //接下来需要实现蛇的运动，实现蛇身的移动就是把蛇的头部增加一格，尾部减去一格
         function sankeMove() {
-            for(i=0;i<snakex.length-1,i++)
+            for(i=0;i<snakex.length-1;i++) {
+                snakex[i] = snakex[i + 1];
+                snakey[i] = snakey[i + 1];
+            }
+                switch (keyCode) {
+                    case 37://向左移动
+                        snakex[snakex.length - 1]--;
+                        break;
+                    case 38:
+                        snakey[snakey.length - 1]--;
+                        break;//向上移动
+                    case 39:
+                        snakex[snakex.length - 1]++;
+                        break;//向右移动
+                    case 40:
+                        snakey[snakey.length - 1]++;
+                        break;//向下移动
+
+                }
+                //由于移动过程中可能会遇到食物所以:
+            if(snakex[snakex.length-1]==foodx&&snakey[snakey.length-1]==foody)//头部和食物在同一格，就是吃到食物
             {
-                snakex[i]=snakex[i+1];
-                snakey[i]=snakey[i+1];
-                switch (keyCode){
-                case 37://向左移动
-                    snakex[snakex.length-1]--;
-                    break;
-                case 38:
-                    snakey[snakey.length-1]--;
-                    break;//向上移动
-                case 39:
-                    snakex[snakex.length-1]++;
-                    break;//向右移动
-                case 40:
-                    snakey[snakey.length-1]++;
-                    break;//向下移动
+                       snakex[snakex.length]=snakex[snakex.length-1];
+                       snakey[snakey.length]=snakey[snakey.length-1];//头部增加一格
+                //由于吃到食物，蛇身体发生变化，需要重新显示
+                for(i=snakex.length-1;i>0;i--){
+                    snakex[i]=snakex[i-1];
+                    snakey[i]=snakey[i-1];
+                }
+            }
+
 
             }
 
-            }
 
-        }
 
     </script>
 </head>
