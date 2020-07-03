@@ -46,7 +46,7 @@
         var arrMap=new Array();//地图数字（二维）
         var snakex=[2,2,2],snakey=[2,2,2];//初始状态的sanke 大小和位置
         var foodx,foody;//因为食物出现位置是随机的，所以不设置初始位置
-        var keyCode=39;//蛇的移动方向默认向右
+        var keyCode=39;//匹配键盘蛇的移动方向默认向右
 
         //创建一个地图
         function createMap() {
@@ -88,6 +88,32 @@
             }while (result);
             arrMap[foody][foodx].className="Food";//同样需要创建食物样式便于区别
         }
+        //接下来需要实现蛇的运动，实现蛇身的移动就是把蛇的头部增加一格，尾部减去一格
+        function sankeMove() {
+            for(i=0;i<snakex.length-1,i++)
+            {
+                snakex[i]=snakex[i+1];
+                snakey[i]=snakey[i+1];
+                switch (keyCode){
+                case 37://向左移动
+                    snakex[snakex.length-1]--;
+                    break;
+                case 38:
+                    snakey[snakey.length-1]--;
+                    break;//向上移动
+                case 39:
+                    snakex[snakex.length-1]++;
+                    break;//向右移动
+                case 40:
+                    snakey[snakey.length-1]++;
+                    break;//向下移动
+
+            }
+
+            }
+
+        }
+
     </script>
 </head>
 <body>
