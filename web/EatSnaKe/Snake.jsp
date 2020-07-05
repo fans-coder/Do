@@ -14,11 +14,12 @@
     <title>贪吃蛇</title>
     <style>
         #map{
-            width: 400px;
-            height: 400px;
+            width: 600px;
+            height: 600px;
             border: 1px solid black;
         }
         /*地图的样式*/
+        /*设置18px 加上下margin各1px=20px,可以修改map的宽高改变地图大小*/
         .Map{
             width: 18px;
             height: 18px;
@@ -30,7 +31,7 @@
             width: 18px;
             height: 18px;
             margin:1px;
-            background-color: aquamarine;
+            background-color: yellow;
             float: left;
         }
         .Food{
@@ -42,9 +43,9 @@
         }
     </style>
     <script>
-        var mapx=30,mapy=30;//设置地图为一个长高均为30格的正方形
+        var mapx=30,mapy=30;//设置地图为一个长高均为20格的正方形
         var arrMap=new Array();//地图数字（二维）
-        var snakex=[2,2,2],snakey=[2,2,2];//初始状态的sanke 大小和位置
+        var snakex=[2,3,4],snakey=[2,2,2];//初始状态的sanke 大小和位置
         var foodx,foody;//因为食物出现位置是随机的，所以不设置初始位置
         var keyCode=39;//匹配键盘蛇的移动方向默认向右
 
@@ -53,11 +54,13 @@
             var map=document.getElementById("map");//获得地图外框的div
             for(y=0;y<mapy;y++){
                 arrMap[y]=new Array();
-                for(a=0;x<mapx;x++){}
-                var div=document.createElement("div");
-                div.className="Map";//需要初始化样式，地图，snake，food需要不同颜色等
-                arrMap[y][x]=div;//将div小格子放入数组中，购建一个表格地图
-                map.appendChild(div);//绘制出一个页面
+                for(x=0;x<mapx;x++){
+                    var div=document.createElement("div");
+                    div.className="Map";//需要初始化样式，地图，snake，food需要不同颜色等
+                    arrMap[y][x]=div;//将div小格子放入数组中，购建一个表格地图
+                    map.appendChild(div);//绘制出一个页面
+                }
+
             }
 
         }
@@ -130,11 +133,18 @@
 
          }else //用户键入的不是方向键
              {
-                 alert("请使用方向键操控游戏");
+                 //alert("请使用方向键操控游戏");//提醒游戏方法
          }
-         //TODO
-     }
 
+     }
+     //使用Window.onload来调用上面的函数，运行
+        window.onload=function () {
+            createMap();
+            createSnake();
+            createFood();//创建必要的三个元素
+            sankeMove();
+            document.onkeydown=downKey();//使用该函数获取方向键
+        }
 
     </script>
 </head>
