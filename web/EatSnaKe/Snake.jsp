@@ -120,10 +120,20 @@
                     snakey[i]=snakey[i-1];
                 }
             }
-
-
             }
+            //通过键盘获取case值
+     function downKey() {
+            var key=event.keyCode//获取键盘事件
+         if(key>=37&&key<=40)//说明玩家在键盘上输入了方向键
+         {
+            keyCode=key; //确定移动方向
 
+         }else //用户键入的不是方向键
+             {
+                 alert("请使用方向键操控游戏");
+         }
+         //TODO
+     }
 
 
     </script>
