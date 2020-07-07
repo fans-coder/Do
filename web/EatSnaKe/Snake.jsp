@@ -134,18 +134,35 @@
                 //吃到食物后需要重新生成
                 createFood();
             }
+            //限制蛇在地图内移动,横向，纵向不能越过地图边界
+            if(snakex[snakex.length-1]<0||snakex[snakex.length-1]>mapx-1||snakey[snakey.length-1]<0||snakey[snakey.length-1]>mapy-1){
+                clearInterval(setInterval("sankeMove()",200));//结束调用移动函数
+                alert("撞墙游戏结束");//提示游戏结束
+                return ;
+            }
             createSnake();
         }
             //通过键盘获取case值
      function downKey() {
             var nowkey=event.keyCode//获取键盘事件
-         if(nowkey>=37&&nowkey<=40)//说明玩家在键盘上输入了方向键
+         //当前方向与键入方向正好相反时，不能掉头
+         if(keyCode==37&&nowkey==39||keyCode==39&&nowkey==37||keyCode==38&&nowkey==40||keyCode==40&&nowkey==38)
+         {
+           alert("不能掉头");
+           return ;
+         }
+         else if(nowkey>=37&&nowkey<=40)//说明玩家在键盘上输入了方向键
          {
             keyCode=nowkey; //确定移动方向
 
-         }else //用户键入的不是方向键
+         }
+         //空格键暂停游戏
+         else if(nowkey==32){
+                alert("游戏已暂停");
+         }
+         else //用户键入的不是方向键
              {
-                 //alert("请使用方向键操控游戏");//提醒游戏方法
+                 alert("请使用方向键操控游戏");//提醒游戏方法
          }
 
      }
