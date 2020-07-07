@@ -5,15 +5,21 @@
     <meta charset="UTF-8">
     <title>Play</title>
 </head>
+<style>
+    body{
+        background-image: url(img/2.jpg);
+    }
+    </style>
 <body>
-<h1 style="color: cyan" >欢迎游玩贪吃蛇</h1>
+<h1 style="color: cyan" align="center">欢迎游玩贪吃蛇</h1>
+<p style="color: chartreuse">游戏模式</p>
 <form name="s" >
-    <label><input name="Speed" type="radio"  value="250" />慢 </label>
-    <label><input name="Speed" type="radio" value="150" />快</label>
-    <label><input name="Speed" type="radio"  value="100" />很快 </label>
+    <label style="color: chocolate"><input name="Speed" type="radio"  value="250" />慢 </label>
+    <label style="color: chocolate"><input name="Speed" type="radio" value="150" />快</label>
+    <label style="color: chocolate"><input name="Speed" type="radio"  value="100" />很快 </label>
     <br>
-    自定义移动速度（越小越快，单位/毫秒,默认200ms）<input name="speed" type="text" value="200">
-    <input type="button" onclick="window.open('Snake.html')" value="Play">
+    <label style="color:orangered">自定义移动速度（越小越快，单位/毫秒,默认200ms）<input name="speed" type="text" value="200" style="background-color: antiquewhite"></label>
+    <input style="background-color: cyan" type="button" onclick="window.open('Snake.html')" value="Play">
 
 </form>
 <script>
@@ -31,8 +37,8 @@
     */
 </script>
 
-<p>简单游戏介绍</p>
-<ul >
+<p style="color:blue">简单游戏介绍</p>
+<ul style="color: green" >
     <li>只能通过方向键来控制蛇的移动</li>
     <li>蛇在移动过程中不能原地调转（头尾互换）</li>
     <li>蛇在移动过程中超出地图边界游戏结束</li>
