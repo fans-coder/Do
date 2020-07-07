@@ -45,7 +45,7 @@
     <script>
         var mapx=30,mapy=30;//设置地图为一个长高均为20格的正方形
         var arrMap=new Array();//地图数字（二维）
-        var snakex=[2,3,4],snakey=[2,2,2];//初始状态的sanke 大小和位置
+        var snakex=[1,2,3,4],snakey=[2,2,2,2];//初始状态的sanke 大小和位置
         var foodx,foody;//因为食物出现位置是随机的，所以不设置初始位置
         var keyCode=39;//匹配键盘蛇的移动方向默认向右
 
@@ -67,10 +67,18 @@
 //创建蛇体
         function createSnake() {
             //需要把蛇的颜色区别于地图
-            for(i=0;i<snakex.length;i++){
+            for(i=0;i<snakex.length;i++)
+            {
                 arrMap[snakey[i]][snakex[i]].className="Snake";//写一个蛇的样式
             }
-            //TODO
+
+        }
+        //蛇体清除，清除蛇本质上是让原来的蛇体消失，简单的方法就是让原来的蛇和地图的颜色一样，就是把原来的蛇的样式设置地图样式即可
+        function claerSnake() {
+            for(i=0;i<snakex.length;i++){
+                arrMap[snakey[i]][snakex[i]].className="Map";
+            }
+
         }
         //创建食物
         function createFood() {
@@ -93,43 +101,47 @@
         }
         //接下来需要实现蛇的运动，实现蛇身的移动就是把蛇的头部增加一格，尾部减去一格
         function sankeMove() {
+            claerSnake();
             for(i=0;i<snakex.length-1;i++) {
                 snakex[i] = snakex[i + 1];
                 snakey[i] = snakey[i + 1];
             }
-                switch (keyCode) {
-                    case 37://向左移动
-                        snakex[snakex.length - 1]--;
-                        break;
-                    case 38:
-                        snakey[snakey.length - 1]--;
-                        break;//向上移动
-                    case 39:
-                        snakex[snakex.length - 1]++;
-                        break;//向右移动
-                    case 40:
-                        snakey[snakey.length - 1]++;
-                        break;//向下移动
+            switch (keyCode) {
+                case 37://向左移动
+                    snakex[snakex.length - 1]--;
+                    break;
+                case 38:
+                    snakey[snakey.length - 1]--;
+                    break;//向上移动
+                case 39:
+                    snakex[snakex.length - 1]++;
+                    break;//向右移动
+                case 40:
+                    snakey[snakey.length - 1]++;
+                    break;//向下移动
 
-                }
-                //由于移动过程中可能会遇到食物所以:
+            }
+            //由于移动过程中可能会遇到食物所以:
             if(snakex[snakex.length-1]==foodx&&snakey[snakey.length-1]==foody)//头部和食物在同一格，就是吃到食物
             {
-                       snakex[snakex.length]=snakex[snakex.length-1];
-                       snakey[snakey.length]=snakey[snakey.length-1];//头部增加一格
-                //由于吃到食物，蛇身体发生变化，需要重新显示
+                snakex[snakex.length]=snakex[snakex.length-1];
+                snakey[snakey.length]=snakey[snakey.length-1];//头部增加一格
+                //由于吃到食物，蛇身体发生变化，需要重新排列
                 for(i=snakex.length-1;i>0;i--){
                     snakex[i]=snakex[i-1];
                     snakey[i]=snakey[i-1];
                 }
+                //吃到食物后需要重新生成
+                createFood();
             }
-            }
+            createSnake();
+        }
             //通过键盘获取case值
      function downKey() {
-            var key=event.keyCode//获取键盘事件
-         if(key>=37&&key<=40)//说明玩家在键盘上输入了方向键
+            var nowkey=event.keyCode//获取键盘事件
+         if(nowkey>=37&&nowkey<=40)//说明玩家在键盘上输入了方向键
          {
-            keyCode=key; //确定移动方向
+            keyCode=nowkey; //确定移动方向
 
          }else //用户键入的不是方向键
              {
@@ -142,8 +154,8 @@
             createMap();
             createSnake();
             createFood();//创建必要的三个元素
-            sankeMove();
-            document.onkeydown=downKey();//使用该函数获取方向键
+            setInterval("sankeMove()",300);//该函数可以实现自动重复调用，前面是调用的函数，后面是时间间隔（毫秒）
+            document.onkeydown=downKey;//使用该函数获取方向键（将函数与按键绑定）
         }
 
     </script>
