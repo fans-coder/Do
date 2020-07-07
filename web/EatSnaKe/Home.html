@@ -1,23 +1,36 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fans
-  Date: 2020/7/1
-  Time: 9:23
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Play</title>
 </head>
 <body>
 <h1 style="color: cyan" >欢迎游玩贪吃蛇</h1>
-<form name="s" action="Snake.jsp" method="post">
+<form name="s" >
     <label><input name="Speed" type="radio"  value="250" />慢 </label>
     <label><input name="Speed" type="radio" value="150" />快</label>
     <label><input name="Speed" type="radio"  value="100" />很快 </label>
-    <input type="submit" onclick="get(document.s.Speed);" value="Play">
+    <br>
+    自定义移动速度（越小越快，单位/毫秒,默认200ms）<input name="speed" type="text" value="200">
+    <input type="button" onclick="window.open('Snake.html')" value="Play">
+
 </form>
+<script>
+   /* function get(radionObj) {
+        for(var i = 0; i < radionObj.length; i ++)
+        {
+            if (radionObj[i].checked)
+            {
+                str=radionObj[i].value;
+            }
+        }
+        alert(str);
+        return str;
+    }
+    */
+</script>
+
 <p>简单游戏介绍</p>
 <ul >
     <li>只能通过方向键来控制蛇的移动</li>

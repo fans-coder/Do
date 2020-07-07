@@ -1,12 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: fans
-  Date: 2020/7/1
-  Time: 8:17
-  To change this template use File | Settings | File Templates.
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +33,9 @@
             float: left;
         }
     </style>
+
     <script>
+
         var mapx=30,mapy=30;//设置地图为一个长高均为20格的正方形
         var arrMap=new Array();//地图数字（二维）
         var snakex=[1,2,3,4],snakey=[2,2,2,2];//初始状态的sanke 大小和位置
@@ -136,7 +129,7 @@
             }
             //限制蛇在地图内移动,横向，纵向不能越过地图边界
             if(snakex[snakex.length-1]<0||snakex[snakex.length-1]>mapx-1||snakey[snakey.length-1]<0||snakey[snakey.length-1]>mapy-1){
-                clearInterval(setInterval("sankeMove()",200));//结束调用移动函数
+                clearInterval(move);//结束调用移动函数
                 alert("撞墙游戏结束");//提示游戏结束
                 return ;
             }
@@ -166,12 +159,14 @@
          }
 
      }
+
      //使用Window.onload来调用上面的函数，运行
         window.onload=function () {
+            var ans=parseInt(window.opener.document.all.speed.value);
             createMap();
             createSnake();
             createFood();//创建必要的三个元素
-            setInterval("sankeMove()",300);//该函数可以实现自动重复调用，前面是调用的函数，后面是时间间隔（毫秒）
+            move=setInterval("sankeMove()",ans);//该函数可以实现自动重复调用，前面是调用的函数，后面是时间间隔（毫秒）
             document.onkeydown=downKey;//使用该函数获取方向键（将函数与按键绑定）
         }
 
@@ -179,6 +174,6 @@
 </head>
 <body>
 <div id="map"></div>
-<p><a href="Home.jsp">退出游戏并返回主页</a></p>
+<p><a href="Home.html">退出游戏并返回主页</a></p>
 </body>
 </html>
